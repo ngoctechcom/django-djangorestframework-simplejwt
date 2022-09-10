@@ -11,8 +11,17 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 from datetime import timedelta
+from email.policy import default
 import os
+import environ
+from dotenv import load_dotenv
 
+load_dotenv()
+
+env = environ.Env(
+    ACCESS_TOKEN_LIFETIME = (int, 10),
+    REFRESH_TOKEN_LIFETIME = (int, 1)
+)
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -130,8 +139,8 @@ STATIC_URL = '/static/'
 
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=env('ACCESS_TOKEN_LIFETIME')),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=env('REFRESH_TOKEN_LIFETIME')),
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': False,
     'UPDATE_LAST_LOGIN': False,
