@@ -2,6 +2,7 @@ from rest_framework import serializers
 from rest_framework import viewsets
 from django.contrib.auth.models import User
 from .models import Project
+from rest_framework.permissions import IsAuthenticated
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -24,5 +25,6 @@ class ProjectViewSet(viewsets.ModelViewSet):
     """
     A viewset for viewing and editing user instances.
     """
+    permission_classes = (IsAuthenticated,)
     serializer_class = ProjectSerializer
     queryset = Project.objects.all()
