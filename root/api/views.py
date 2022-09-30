@@ -12,7 +12,8 @@ from django.conf import settings
 
 from .serializers import *
 # Create your views here.
-
+router = routers.DefaultRouter()
+router.register(r'projects', ProjectViewSet)
 
 class Test(APIView):
     permission_classes = (IsAuthenticated,)
