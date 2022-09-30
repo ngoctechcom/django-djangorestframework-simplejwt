@@ -8,12 +8,13 @@ from django.contrib.auth import authenticate
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import status,routers
 from django.conf import settings
+from rest_framework.generics import RetrieveUpdateDestroyAPIView
 
 
 from .serializers import *
 # Create your views here.
-router = routers.DefaultRouter()
-router.register(r'projects', ProjectViewSet)
+# router = routers.DefaultRouter()
+# router.register(r'projects', ProjectViewSet)
 
 class Test(APIView):
     permission_classes = (IsAuthenticated,)

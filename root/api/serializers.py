@@ -3,6 +3,7 @@ from rest_framework import viewsets
 from django.contrib.auth.models import User
 from .models import Project
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.generics import RetrieveUpdateDestroyAPIView, ListAPIView
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -21,7 +22,15 @@ class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
         fields = '__all__'
-class ProjectViewSet(viewsets.ModelViewSet):
+class ProjectViewSet(RetrieveUpdateDestroyAPIView):
+    """
+    A viewset for viewing and editing user instances.
+    """
+    permission_classes = (IsAuthenticated,)
+    serializer_class = ProjectSerializer
+    queryset = Project.objects.all()
+
+class ListProjectViewSet(ListAPIView):
     """
     A viewset for viewing and editing user instances.
     """
