@@ -9,5 +9,5 @@ urlpatterns = [
     path('token/custom', GetToken.as_view(), name="token_custom"),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('hello/', Test.as_view(), name='hello'),
-    path('/', include(router.urls)),
+    path('', include(router.urls)),
 ]

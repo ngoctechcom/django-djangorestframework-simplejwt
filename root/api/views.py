@@ -6,7 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from django.views import View
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from rest_framework import status
+from rest_framework import status,routers
 from django.conf import settings
 
 
